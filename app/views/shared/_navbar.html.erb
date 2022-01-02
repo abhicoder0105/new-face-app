@@ -1,0 +1,27 @@
+<div class="gradient-custom border">
+  <ul class="nav">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="http://localhost:3000">Facebook</a>
+    </li>
+    <% if user_signed_in? %>
+    <li class="nav-item">
+    <%= link_to "Logout", destroy_user_session_path, :method => :delete,  :class => "nav-link" %>
+      </li>
+  <li class="nav-item">
+    <a class="nav-link disabled" href="#" tabindex="-1">Logout</a>
+  </li>
+    <% else %>
+    
+  
+    <li class="nav-item">
+      <a class="nav-link" href="https://getbootstrap.com/docs/5.1/getting-started/introduction/" target="_blank">Bootstrap doc</a>
+    </li>
+    <li class="nav-item">
+    <%= link_to "Login", new_user_session_url, :method => :delete,  :class => "nav-link" %>
+    </li>
+    <li class="nav-item">
+    <%= link_to "Sign In", new_user_registration_url, :method => :delete,  :class => "nav-link" %>
+    </li>
+  </ul>
+  <% end %>
+</div>

@@ -3,6 +3,24 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  #send mail with gmail to users
+  config.action_mailer.delivery_method = :smtp
+  host = 'localhost:3000'
+  config.action_mailer.default_url_options = { :host => 'localhost:3000', protocol: 'http' }
+
+# SMTP settings for gmail
+  config.action_mailer.smtp_settings = {
+  :address              => "smtp.gmail.com",
+  :port                 => 587,
+  :user_name            => "sharmaabhishek9770@gmail.com",
+  :password             => "abhi@2807",
+  :authentication       => "plain",
+  :enable_starttls_auto => true
+}
+
+
+
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 

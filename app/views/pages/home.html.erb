@@ -1,10 +1,38 @@
 <div class="container-fluid mb-4">
   <div class="row justify-content-center">
     <div class="col-8">
+      <% if user_signed_in? %>
+      <%= link_to 'Create Blog', new_blog_path, {:remote => true, 'data-bs-toggle' => "modal",'data-bs-target' => '#modal-window', class: 'btn btn-primary btn-lg'} %> 
+      
+<!-- Model code start -->
+      <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document"> 
+            <div class="modal-content">
+                    
+            </div> 
+          </div>
+        </div>       
+<!-- Model Code end -->
 
-    <h1>Welcome to the New Face App</h1>
-    <p>You can register Yourslef here</p>
+<!-- Blogs Table -->
 
+  
+
+
+
+<!-- Blogs table end -->
+
+    </div> 
+  </div> 
+</div>
+
+         
+      
+
+      <% else %>
+          <h1>Welcome to the New Face App</h1>
+          <p>You can register Yourslef here</p>
+      <% end %>
 
 
     </div>

@@ -27,7 +27,8 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: developer_facebook
+  database: 
+    
   pool: 5
   host: localhost
   username: postgres

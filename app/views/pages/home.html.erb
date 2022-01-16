@@ -15,37 +15,22 @@
 <!-- Model Code end -->
 
 <!-- Blogs Table -->
-<h1>Blogs</h1>
+      <h1>Blogs</h1>
+      <% @blogs.each do |blog| %>
+      <div style="display: inline-block;">   
+        <div class="card mt-4 mx-1" style="width: 18rem;">      
+          <img class="card-img-top"><%= image_tag(blog.attachments, alt: 'Image') if blog.attachments.present? %></img>
+          <div class="card-body">
+            <h5 class="card-title"><%= blog.title %></h5>
+            <h6 class="card-title"><%= blog.user.name + " " +  blog.user.surname  %></h6>
+            <p class="card-text"><%= blog.description %></p>
+            <%= link_to "Edit", edit_blog_path(blog),{:remote => true, 'data-bs-toggle' => "modal",'data-bs-target' => '#modal-window', class: 'btn btn-primary'}%>
+            <%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' }, :remote => true, :class => 'btn btn-danger' %>
+          </div>
+        </div>
+      </div>
 
-<table class="table table-dark mt-4">
-  <thead>
-    <tr>
-      <th scope="col">S.no</th>
-      <th scope="col">Title</th>
-      <th scope="col">Description</th>
-       <th scope="col">Created By</th>
-      <th scope="col">Actions</th>
-    </tr>
-  </thead>
-  <tbody id="blogsTable"> 
-     <% @blogs.each do |blog| %>
-    <tr id="blogRow">
-      <th scope="row"><%= blog.id %></th>
-      <td><%= blog.title %></td>
-      <td><%= blog.description %></td>
-      <td><%= blog.user.name + " " +  blog.user.surname %></td>
-      <td>
-        <%= link_to "Edit", edit_blog_path(blog),{:remote => true, 'data-bs-toggle' => "modal",'data-bs-target' => '#modal-window', class: 'btn btn-primary'}%>
-      <%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' }, :remote => true, :class => 'btn btn-danger' %>
-      </td>
-    </tr>
-     <% end %>
-  </tbody>
-</table>
-
-  
-
-
+      <% end %>
 
 <!-- Blogs table end -->
 

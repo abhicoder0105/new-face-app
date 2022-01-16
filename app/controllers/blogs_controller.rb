@@ -10,10 +10,13 @@ class BlogsController < ApplicationController
 
 	def new
 	  @blog = Blog.new
+    @blog.attachments.build
 	end
 
 	def create
+    debugger
 		 @blog = current_user.blogs.new(blog_params)
+
 
     if @blog.save 
      redirect_to root_path
@@ -47,7 +50,7 @@ class BlogsController < ApplicationController
     private
 
     def blog_params
-      params.require(:blog).permit(:title, :description)
+      params.require(:blog).permit(:title, :description, attachments: [:id, :attachment])
     end
 
 

@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
-  concern :attachable do
-    resources :attachments, only: :create
-  end
+  # concern :attachable do
+  #   resources :attachments, only: :create
+  # end
   
-  resources :blogs, concerns: [:attachable]
+  resources :blogs
 
   devise_for :users
   devise_scope :user do  

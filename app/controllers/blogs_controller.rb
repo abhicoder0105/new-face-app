@@ -1,5 +1,6 @@
 class BlogsController < ApplicationController
 
+
 	def index
 		@blogs = Blog.all
 	end
@@ -10,16 +11,21 @@ class BlogsController < ApplicationController
 
 	def new
 	  @blog = Blog.new
-    @blog.attachments.build
 	end
 
-	def create
-    debugger
+	def create    
 		 @blog = current_user.blogs.new(blog_params)
-
-
     if @blog.save 
-     redirect_to root_path
+       params['blog']["blog_attachments"].each do |arr|
+          arr.each do |item|                     
+            @blog.blog_attachments.create(attachment: item)
+        end
+      end    
+      
+
+
+      redirect_to root_path
+      # end    
    	else
       render :new, status: :unprocessable_entity
     end
@@ -50,8 +56,12 @@ class BlogsController < ApplicationController
     private
 
     def blog_params
-      params.require(:blog).permit(:title, :description, attachments: [:id, :attachment])
+      params.require(:blog).permit(:title, :description, :image)
     end
+
+   
+
+   
 
 
 end

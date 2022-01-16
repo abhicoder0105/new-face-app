@@ -19,7 +19,7 @@
       <% @blogs.each do |blog| %>
       <div style="display: inline-block;">   
         <div class="card mt-4 mx-1" style="width: 18rem;">      
-          <img class="card-img-top"><%= image_tag(blog.attachments, alt: 'Image') if blog.attachments.present? %></img>
+           <img class="card-img-top"><%= image_tag(blog.attachment, alt: 'Image') if blog.attachments.present? %></img>  
           <div class="card-body">
             <h5 class="card-title"><%= blog.title %></h5>
             <h6 class="card-title"><%= blog.user.name + " " +  blog.user.surname  %></h6>
@@ -36,9 +36,7 @@
 
     </div> 
   </div> 
-</div>
-
-         
+</div>     
       
 
       <% else %>

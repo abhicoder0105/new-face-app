@@ -1,6 +1,5 @@
 class Blog < ApplicationRecord
-  # after_save :save_attachment
-
+  # after_save :save_attachment 
 
   belongs_to :user
   has_many :blog_attachments  

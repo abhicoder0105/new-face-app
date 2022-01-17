@@ -1,10 +1,18 @@
+
 Rails.application.routes.draw do
 
   # concern :attachable do
   #   resources :attachments, only: :create
   # end
   
-  resources :blogs
+  resources :blogs do
+    member do
+      get :get_subcategory
+    end
+  end
+
+  resources :categories 
+
 
   devise_for :users
   devise_scope :user do  

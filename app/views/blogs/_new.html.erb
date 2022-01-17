@@ -13,26 +13,70 @@
   <div>
     <%= form.label :description %><br>
     <%= form.text_area :description, class: 'form-control' %>
-  </div>
+  </div>  
 
-  
+  <div>
+    <%= form.label 'Category' %><br>
+    <%= select_tag  :category, options_from_collection_for_select(@categories, :id, :category ),class:'form-control category', id: "category" %>
+  </div>  
 
-    <div >
-    <%= form.fields_for :blog_attachments do |f| %>
+
+
+  <%= form.label "Sub Category" %><br>
+  <!-- Currently displays all staff members on every team, no matter what team is selected. -->
+<div class="field" id="sub_category_field">
+   <%= render :partial => 'sub_category', :object => @subcategories %> 
+</div>
+
+<!-- <div>
+    <%#= form.label 'Sub Category' %><br>
+    <%#= form.select :sub_category, sub_category, class: 'form-control sub_category' %>
+  </div> 
+ -->
+
+   <!--  <div >
+    <%#= form.fields_for :blog_attachments do |f| %>
     <label class="col-sm-2 control-label">Image</label>
       <div class="col-sm-10">
-          <%= f.file_field :attachment, class: "form-control"%>
+          <%#= f.file_field :attachment , class: "form-control"%>
          
       </div>
-      <% end %>
-    </div>
-  <div class="modal-footer"> 
-    
+      <%# end %>
+    </div> -->
+  <div class="modal-footer">     
       <%= form.submit class: "btn btn-primary" %> 
       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> 
 
   </div>
 <% end %>
+
+
+
+
+<script>
+  
+  $(document).ready(function(){
+    $("#category").on('change', function(){
+      alert("The new team id is: " + $(this).val()); 
+      $.ajax({
+      url: "/blogs/:"+ $(this).val()+ "/get_subcategory",
+      type: "GET",  
+      data: {category_id: $(this).val()},
+      success: function(data) {    
+      $("#sub_category_field").eq(0).html(data);     
+
+      },
+      error: function(data) {}
+      // Callbacks that will be explained
+    })
+   
+    });        
+});  
+
+
+
+
+</script>
 </div>
   
   

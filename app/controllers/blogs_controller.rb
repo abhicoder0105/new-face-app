@@ -11,21 +11,15 @@ class BlogsController < ApplicationController
 
 	def new
 	  @blog = Blog.new
+    @categories =Category.all
+    @subcategories =[]  
 	end
 
 	def create    
 		 @blog = current_user.blogs.new(blog_params)
-    if @blog.save 
-       params['blog']["blog_attachments"].each do |arr|
-          arr.each do |item|                     
-            @blog.blog_attachments.create(attachment: item)
-        end
-      end    
-      
-
-
-      redirect_to root_path
-      # end    
+    if @blog.save       
+   
+      redirect_to root_path     
    	else
       render :new, status: :unprocessable_entity
     end
@@ -53,15 +47,17 @@ class BlogsController < ApplicationController
     redirect_to root_path, status: :see_other
   end
 
+
+  def get_subcategory    
+   @subcategories= SubCategory.where(category_id: params["category_id"])
+    render :partial => "sub_category", :object => @subcategories
+  end
+
     private
 
     def blog_params
-      params.require(:blog).permit(:title, :description, :image)
-    end
-
-   
-
-   
+      params.require(:blog).permit(:title, :description, :category, :sub_category)
+    end 
 
 
 end

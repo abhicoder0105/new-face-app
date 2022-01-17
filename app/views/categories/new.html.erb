@@ -1,0 +1,28 @@
+<div class="modal-header"> 
+  <h4 class="modal-title" id="myModalLabel">Ceate Category</h4> 
+</div>
+ <div class="modal-body"> 
+ <h1>New Category </h1>
+<%= form_for  :category, url: categories_path do |form| %>
+<!-- <%#= form_with(model: blog, local: false) do |form| %> -->
+  <div>
+    <%= form.label :category %><br>
+    <%= form.text_field :category, class: 'form-control' %>
+  </div>
+
+  <div>
+    <%= form.label :parent_category %><br>
+    <%= form.text_area :parent_category, class: 'form-control' %>
+  </div>  
+
+  
+  <div class="modal-footer"> 
+    
+      <%= form.submit class: "btn btn-primary" %> 
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> 
+
+  </div>
+<% end %>
+</div>
+  
+  

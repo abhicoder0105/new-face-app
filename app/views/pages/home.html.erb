@@ -19,10 +19,10 @@
       <% @blogs.each do |blog| %>
       <div style="display: inline-block;">   
         <div class="card mt-4 mx-1" style="width: 18rem;">      
-           <img class="card-img-top"><%= image_tag(blog.attachment, alt: 'Image') if blog.attachments.present? %></img>  
+         <!-- <img class="card-img-top"><#%= image_tag(blog.blog_attachments.first.attachment[0].url, alt: 'Image') if blog.blog_attachments.present? %></img> -->
           <div class="card-body">
             <h5 class="card-title"><%= blog.title %></h5>
-            <h6 class="card-title"><%= blog.user.name + " " +  blog.user.surname  %></h6>
+            <h6 class="card-text"><%= blog.user.name + " " +  blog.user.surname  %></h6>
             <p class="card-text"><%= blog.description %></p>
             <%= link_to "Edit", edit_blog_path(blog),{:remote => true, 'data-bs-toggle' => "modal",'data-bs-target' => '#modal-window', class: 'btn btn-primary'}%>
             <%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' }, :remote => true, :class => 'btn btn-danger' %>

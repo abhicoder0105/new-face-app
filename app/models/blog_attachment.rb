@@ -1,4 +1,4 @@
 class BlogAttachment < ApplicationRecord
-	mount_uploaders :attachment, ImageUploader
+	mount_uploaders :attachment, AttachmentUploader
 	belongs_to :blog
 end

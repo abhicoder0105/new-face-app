@@ -18,9 +18,9 @@
       <h1>Blogs</h1>
       <% @blogs.each do |blog| %>
       <div style="display: inline-block;">   
-        <div class="card mt-4 mx-1" style="width: 18rem;">      
-         <!-- <img class="card-img-top"><#%= image_tag(blog.blog_attachments.first.attachment[0].url, alt: 'Image') if blog.blog_attachments.present? %></img> -->
+        <div class="card mt-4 mx-1" style="width: 18rem;">   
           <div class="card-body">
+            <h5 class="card-title"><%= blog.category %></h5>
             <h5 class="card-title"><%= blog.title %></h5>
             <h6 class="card-text"><%= blog.user.name + " " +  blog.user.surname  %></h6>
             <p class="card-text"><%= blog.description %></p>
